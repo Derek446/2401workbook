@@ -44,4 +44,4 @@ def pets_for_lifestyle(request, lifestyle):
         'matching_pets': matching_pets
     }
 
-    return render(request, 'lifestyle_pets.html', context)
+    return render(request, 'pets_for_lifestyle.html', context)
