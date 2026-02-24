@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 from .models import Company, Employee
-from .forms import ContactForm, CompanyForm
+from .forms import ContactForm, CompanyForm, EmployeeForm
 
 # Create the contact form here.
 def contact_us(request):
@@ -44,6 +44,8 @@ def contact_us(request):
                 "clients/contact_us.html",
                 {"form": form}
             )
+    else:
+        return render(request, "clients/contact_us.html", {"form": form})
 
 def list_companies(request):
     # fetching data from the database and passing it to the template
@@ -92,9 +94,43 @@ def create_company(request):
             # get the newly created company instance, this must be done after save to have the PK
             company = form.instance
             # pass the new company to the template
-            return render(request, "clients/create_company.html", {"form": CompanyForm(), "new_company": company})
+            return render(request, "clients/company_crud.html", {"form": CompanyForm(), "new_company": company})
         else:
-            return render(request, "clients/create_company.html", {"form": form}) # returns the form as it is
+            return render(request, "clients/company_crud.html", {"form": form}) # returns the form as it is
     # default for GET
     form = CompanyForm()
-    return render(request, "clients/create_company.html", {"form": form})
+    return render(request, "clients/company_crud.html", {"form": form})
+
+def update_company(request, company_id):
+    company = get_object_or_404(Company, id=company_id)
+    if request.method == "GET":
+        form = CompanyForm(instance=company)
+        return render(request, "clients/company_crud.html", { "company": company, "form": form })
+    elif request.method == "POST":
+        form = CompanyForm(request.POST, instance=company)
+        if form.is_valid():
+            form.save()
+            updated_company = form.instance
+            return render(request, "clients/company_crud.html", { "company": updated_company, "form": CompanyForm(instance=company), "success": True, })
+        else:
+            return render(request, "clients/company_crud.html", { "form": form })
+    return render(request, "clients/company_crud.html", { "company": company, "form": CompanyForm() })
+
+def create_employee(request):
+    if request.method == "POST":
+        form = EmployeeForm(request.POST)
+        # check if the form is valid.
+        if form.is_valid():
+            # Save the new company to the database
+            # this uses the clean data from the form to create a new company
+            # this will set the PK for the record
+            form.save()
+            # get the newly created company instance, this must be done after save to have the PK
+            employee = form.instance
+            # pass the new employee to the template
+            return render(request, "clients/employee_crud.html", {"form": EmployeeForm(), "new_employee": employee})
+        else:
+            return render(request, "clients/employee_crud.html", {"form": form}) # returns the form as it is
+    # default for GET
+    form = EmployeeForm()
+    return render(request, "clients/employee_crud.html", {"form": form})

@@ -5,7 +5,14 @@
     <h1 class="text-3xl font-bold underline">
         Create a new Company
     </h1>
-
+    {% if success %}
+    <div class="mt-4 p-4 bg-green-100 text-green-800 border border-green-200 rounded">
+        Company "{{ company.name }}" updated successfully.
+        <a href="{% url 'company_detail' company.id %}" class="text-blue-600 underline">
+            View Company Details
+        </a>
+    </div>
+    {% endif %}
     {% if new_company %}
     <div class="mt-4 p-4 bg-green-100 text-green-800 border border-green-200 rounded">
         Company "{{ new_company.name }}" has been created successfully.
