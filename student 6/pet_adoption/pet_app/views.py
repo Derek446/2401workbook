@@ -37,7 +37,6 @@ def pet_type_details(request, pet_type):
     return render(request, 'pet_details.html', context)
 
 def pets_for_lifestyle(request, lifestyle):
-    lifestyle = lifestyle
     matching_pets = [pet for pet, details in PET_TYPES.items() if details['lifestyle_fit'] == lifestyle]
     context = {
         'lifestyle': lifestyle,
