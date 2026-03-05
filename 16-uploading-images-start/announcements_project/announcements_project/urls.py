@@ -24,6 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('accounts/', include('core.urls')),  # registration view added!
     path('', include('announcements.urls')),  # announcements app urls
+    path('profile/', include('profiles.urls')),  # profiles app urls
 ]
 
 if settings.DEBUG:
