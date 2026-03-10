@@ -113,11 +113,18 @@ class BulkAssignmentUploadForm(forms.Form):
     def clean_csv_file(self):
         file = self.cleaned_data.get('csv_file')
         # Validate file type extension
-        if not file.name.endswith('.csv'):
+        if file and not file.name.endswith('.csv'):
             raise forms.ValidationError("Please upload a valid CSV file.")
 
         # Check the content type
-        if file.content_type != 'text/csv':
+        allowed_types = [
+            'text/csv',
+            'application/vnd.ms-excel',      # Windows/Excel commonly sends this
+            'application/csv',
+            'text/plain',                     # Some systems report CSVs as plain text
+            'application/octet-stream',       # Generic binary — less specific but common
+        ]
+        if file and file.content_type not in allowed_types:
             raise forms.ValidationError("File type is not CSV.")
 
         return file
@@ -310,9 +317,7 @@ def bulk_assignment_upload(request):
         if form.is_valid():
             # Process the uploaded CSV file
             csv_file = form.cleaned_data['csv_file']
-            # C
             assignments = Assignment.create_assignments_from_csv(csv_file, owner=request.user)
-            # Note
             success = True
     else:
         form = BulkAssignmentUploadForm()

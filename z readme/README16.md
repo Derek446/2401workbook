@@ -545,12 +545,12 @@ Add the following HTML and template code to `profiles/templates/profiles/profile
 {% block content %}
 <div class="max-w-2xl mx-auto px-4 md:px-0">
 
-  <div class="flex justify-between items-center mb-4">
+    <div class="flex justify-between items-center mb-4">
         <h1 class="text-3xl font-bold underline">
             Profile List
         </h1>
-      </div>
-      <ul role="list" class="divide-y divide-gray-100 dark:divide-white/5">
+    </div>
+        <ul role="list" class="divide-y divide-gray-100 dark:divide-white/5">
 
         {% for profile in profiles %}
 
@@ -564,7 +564,7 @@ Add the following HTML and template code to `profiles/templates/profiles/profile
               alt="{{ profile.user.username }}'s profile picture"
               height="48"
               width="48"
-              />
+            >
             <div class="min-w-0">
               <p class="text-sm/6 font-semibold text-gray-900 dark:text-white">
                 {{ profile.user.username }}
@@ -579,7 +579,6 @@ Add the following HTML and template code to `profiles/templates/profiles/profile
         {% endfor %}
       </ul>
     </div>
-</div>
 {% endblock %}
 ```
 The important part to note here is how we access the image URL using `{{ profile.profile_picture.url }}`. This is how you can access the URL of the uploaded image in your templates.
