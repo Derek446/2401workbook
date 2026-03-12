@@ -29,15 +29,14 @@
                 <!--  Check if the user is authenticated -->
                 {% if user.is_authenticated %}
                 <div>
-                    <!-- Add the assignment list url. -->
-                    <a href="{% url 'assignment_list' %}"
-                    class="px-4 py-2 mr-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Assignments</a>
                     <!--  Add logout tag to action -->
                     <form method="post" action="{% url 'logout' %}">
                         <span class="text-gray-300 mr-4">
                             <!--  Add username and the role below -->
                             Hello, {{user.username}}, ({{user.role}})
                         </span>
+                        <!-- Add the assignment list url. -->
+                        <a href="{% url 'assignment_list' %}" class="px-4 py-2 mr-2 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">Assignments</a>
                         <!--  Add CSRF Token -->
                         {% csrf_token %}
                         <button type="submit"

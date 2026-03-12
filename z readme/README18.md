@@ -257,6 +257,10 @@ This is to "fake" sending emails by printing them to the console instead.
 In the `courses/management/commands/` directory, create a new file named `notify_instructors_new_submissions.py`. This file will contain the logic for our custom management command to remind instructors about new submissions.
 
 ```python
+from django.core.management.base import BaseCommand
+from courses.models import Submission
+from django.core.mail import send_mail
+
 class Command(BaseCommand):
     help = 'Notify instructors about new submissions'
 

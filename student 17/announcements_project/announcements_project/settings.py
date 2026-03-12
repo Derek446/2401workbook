@@ -129,9 +129,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = 'core.User'
 
 
-LOGIN_REDIRECT_URL = '/'  # after login original LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'accounts/login/'  # after logout
-LOGIN_URL = 'accounts/login/' #
+LOGIN_REDIRECT_URL = ''  # after login original LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/accounts/login/'  # after logout
+LOGIN_URL = '/accounts/login/' #
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
