@@ -30,10 +30,6 @@ class AnnouncementListView(View):
 
 # this will restrict access to only users that pass the is_teacher test
 # it will redirect to the login page if the user does not have permission.
-from django.views import View
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required, user_passes_test
-
 @method_decorator(login_required, name='dispatch')
 @method_decorator(user_passes_test(is_teacher, login_url='login'), name='dispatch')
 class CreateAnnouncementView(View):

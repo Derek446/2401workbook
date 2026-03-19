@@ -159,6 +159,7 @@ If you haven't already let's create a `403.html` page in the root of the project
       Please contact the administrator if you believe this is a mistake.
     </p>
   </div>
+</div>
 {% endblock %}
 ```
 
