@@ -13,7 +13,7 @@ We're going to do this by modifying the existing project to serialize the "Worko
 
 A `ModelSerializer` is a shortcut (kind of like a `ModelForm`) except it automatically generates a set of fields based on the model and also includes simple implementations of the `create()` and `update()` methods. This makes it easier to create serializers for our models without having to define each field manually.
 
-Open `workout/serializers.py` and add the following code:
+Open `workouts_app/serializers.py` and add the following code:
 
 ```python
 from rest_framework import serializers
@@ -41,7 +41,7 @@ Note: this creates all of the fields for the `WorkoutSerializer` based on the `W
 
 Last class we used an `APIView` to create our endpoints but now we're going to use a `ModelViewSet` which provides a set of default views for listing, creating, retrieving, updating, and deleting objects. This will allow us to quickly create API endpoints for our `Workout` model without having to define each view manually.
 
-Open `workout/views.py` and add the following code:
+Open `workouts_app/views.py` and add the following code:
 
 ```python
 
@@ -81,7 +81,7 @@ this drastically shortens up the code we wrote last class, and if we need to add
 
 Last class we explicitly defined our URL patterns for each view, but now that we're using a `ModelViewSet`, we can take advantage of DRF's routers to automatically generate the URL patterns for us.
 
-Open `workout/urls.py` and modify it to look like this:
+Open `workouts_app/urls.py` and modify it to look like this:
 
 ```python
 from django.urls import path, include
@@ -124,7 +124,7 @@ Right now if we create a workout using the `POST /workouts/` it will give us an 
 ![post denied](images/1_post_denied.png)
 
 #### 4.1 Let's set up permissions to allow any user to access the `WorkoutViewSet` endpoints.
-Open `workout/views.py` and modify the `WorkoutViewSet` to include the following line:
+Open `workouts_app/views.py` and modify the `WorkoutViewSet` to include the following line:
 
 ```python
 # ... other imports ...
@@ -201,7 +201,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     # ... other url patterns ...
-    path('api/v1/token-auth/', obtain_auth_token, name='api_token_auth'),  # Add this line to
+    path('api/v1/token-auth/', obtain_auth_token, name='api_token_auth'),  # Add this line
 ]
 ```
 
@@ -265,4 +265,4 @@ Build on the "Goal" endpoint we created in the previous class and create a new `
 
 In this class, we learned how to use DRF's `ModelSerializer` and `ModelViewSet` to quickly create API endpoints for our models. We also set up permissions to restrict access to authenticated users and implemented token-based authentication to secure our API endpoints. This is a common pattern for building APIs in Django REST Framework, and it allows us to easily create and manage our API endpoints while ensuring that they are secure and accessible only to authorized users.
 
-In the next class we're going to explore how to save the user who created a workout and restrict access to workouts so that users can only see and manage their own workouts. This will involve using the `request.user` object to associate workouts with the authenticated user and implementing custom permissions to enforce this behavior.
+In the next class we're going to explore how to save the user who created a workout and restrict access to workouts so that users can only see and manage their own workouts. This will involve using the `request.user` object to associate workouts with the authenticated user and implementing custom permissions to enforce this behaviour.

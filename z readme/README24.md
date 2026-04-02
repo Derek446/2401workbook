@@ -77,15 +77,12 @@ It should look something like below, this shows that:
 We're going to add a `WorkoutDetailReadOnlySerializer` that includes the workout logs and use that serializer in the custom action.
 
 ```python
-from rest_framework import serializers
-# ... other imports ...
-
 # ... workout serializer ...
 
 class WorkoutDetailReadOnlySerializer(serializers.ModelSerializer):
     class Meta:
         model = Workout
-        fields = ['id', 'title', 'date', 'workout_logs']
+        fields = ['id', 'title', 'date', 'logs']
 
 # ... other serializers ...
 ```
@@ -182,7 +179,7 @@ We'll be using using the `SearchFilter` backend to allow users to search for exe
 
 ```python
 
-from rest_framework import filters
+from rest_framework import viewsets, filters
 # ... other imports ...
 
 class ExerciseSearchViewSet(viewsets.ReadOnlyModelViewSet):
@@ -205,7 +202,7 @@ Let's talk about what we added here.
 #### 4.3 Let's add the url for the `ExerciseSearchViewSet` in the file `workouts_app/urls.py`.
 
 ```python
-from django.urls import path, include
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 from .views import (ExerciseAPIView, WorkoutViewSet, WorkoutLogAPIView,

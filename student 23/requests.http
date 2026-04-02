@@ -1,0 +1,12 @@
+POST http://127.0.0.1:8000/api/v1/token-auth/
+content-type: application/json
+ 
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+
+GET http://127.0.0.1:8000/api/v1/workouts/
+content-type: application/json
+ Authorization: token af8c3fc983063fd79b5340c263c1d1f02489fdef

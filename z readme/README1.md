@@ -6,7 +6,7 @@ In this example we'll be going through the basics of Django and backend web deve
 ## Steps
 
 1. Create a virtual envirnment and install Django
-`python3 -m venv ./venv`
+`py -m venv venv`
 
 activate the virtual environment:
 - linux/mac: `source ./venv/bin/activate`

@@ -78,8 +78,7 @@ Let's talk about what's going on here.
 #### 2.1 Let's create the `get_serializer_class` method in the WorkoutLogViewSet that returns the appropriate serializer based on the action in the `workouts_app/views.py` file.
 
 ```python
-from .serializers import( ExerciseSerializer, WorkoutSerializer
-                         , WorkoutLogReadOnlySerializer, WorkoutLogCreateUpdateSerializer)
+from .serializers import ExerciseSerializer, WorkoutSerializer, WorkoutLogReadOnlySerializer, WorkoutLogCreateUpdateSerializer, WorkoutLog
 from .models import Exercise, Workout
 from rest_framework import viewsets
 # ... other imports ...
@@ -349,6 +348,8 @@ Right now our workout logs aren't really associated with a user, so in the next 
 
 In the `WorkoutLog` model, we're going to add a new field called `user` that is a foreign key to the user model. This will allow us to associate each workout log with a specific user.
 ```python
+from django.conf import settings
+
 # ... other imports and models ...
 class WorkoutLog(models.Model):
     # add the user to the workout log model.

@@ -77,10 +77,12 @@ Serializers in DRF do two things:
 
 Let's create serializers for our `Exercise` model explicitly.
 
+Create serializers.py in workouts_app.
+
 ```python
 from rest_framework import serializers
 
-from .models import Exercise, Workout
+from .models import Exercise
 
 
 class ExerciseSerializer(serializers.Serializer):
@@ -102,7 +104,7 @@ We need the view logic to handle `GET` requests to list all of the exercises in 
 
 ```python
 
-from rest_framework import APIView
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializers import ExerciseSerializer
@@ -200,7 +202,7 @@ class ExerciseSerializer(serializers.Serializer):
 #### 7.2 Now, let's add a `post` method to our `ExerciseAPIView` to handle `POST` requests and create new exercises through the API.
 
 ```python
-from rest_framework import APIView
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializers import ExerciseSerializer
