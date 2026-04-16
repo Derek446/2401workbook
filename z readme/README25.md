@@ -60,7 +60,7 @@ ALLOWED_HOSTS=127.0.0.1,localhost
 Take note that `.env` files should NEVER be committed to version control (e.g. git) since they contain sensitive information. Make sure to add `.env` to your `.gitignore` file.
 
 #### 3.2 Update your `settings.py` file to use the environment variables.
-At the top of the file import and load the envrionment variables using `python-dotenv` and `dj-database-url`:
+At the top of the file import, load the envrionment variables using `python-dotenv` and `dj-database-url`:
 ```python
 import os
 from dotenv import load_dotenv
@@ -81,7 +81,7 @@ DATABASES = {
 }
 ```
 
-You can test this by taking a look at the shell and running the follwoing commands:
+You can test this by taking a look at the shell and running the following commands:
 ```python
 from django.conf import settings
 print(settings.SECRET_KEY)
